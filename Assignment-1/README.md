@@ -1,4 +1,4 @@
-## Assignment
+## Assignment 1
 Print 'Hello, world!' to the terminal!
 
 ## Example Output
