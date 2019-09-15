@@ -5,7 +5,7 @@ If you need to brush up on the Quadratic Formula, hit up [Khan Academy!](https:/
 
 Hint: Make your life easier by including the `math.h` header file. You may have to search online for an additional flag for `gcc` to get your code compiled correctly!
 
-Extra Credit: Build in a mechanism for checking your solutions which takes the answer and plugs it back into the Formula and hopefully equals `0`. Use `if` control flow to check the answer and print the solution. If your program fails to check the solution, tell the user to double-check themselves. 
+Extra Credit: Build in a mechanism which checks the solution by plugging it back into the formula and seeing if it equals `0`. Use `if` control flow to instruct the user to double check all solutions which aren't confirmed (a lot won't be confirmed since they'll be truncated decimals). 
 
 ## Example Output
 ```terminal_session
