@@ -7,7 +7,7 @@ Extra Credit: Dynamically allocate the array size of your char variable based on
 
 ## Example Output
 ```terminal_session
-tokyo:~/LearningC/ # ./assign3                                     
+tokyo:~/LearningC/ # ./assignment3                                     
 Enter your first name: Jimmy
 Enter your last name: Smith
 Hello Jimmy Smith!
