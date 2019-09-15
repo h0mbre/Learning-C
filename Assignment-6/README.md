@@ -3,6 +3,8 @@ Prompt the user for A, B, and C values and then use those values to determine th
 
 If you need to brush up on the Quadratic Formula, hit up [Khan Academy!](https://www.youtube.com/watch?v=iulx0z1lz8M)
 
+Hint: Make your life easier by including the `math.h` header file. 
+
 ## Example Output
 
 
