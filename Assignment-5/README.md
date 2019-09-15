@@ -5,7 +5,7 @@ Extra Credit: Make sure the Hours, Minutes, and Seconds print with no decimal pl
 
 ## Example Output
 ```terminal_session
-tokyo:~/LearningC/ # ./hello                                         
+tokyo:~/LearningC/ # ./assign5                                        
 Enter the amount of seconds: 18550
 18550 seconds is equal to 5 hours, 9 minutes, and 10 seconds.#
 ```
