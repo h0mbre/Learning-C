@@ -7,6 +7,7 @@ Ask the user for a number between `1` and `500` and then display what range that
 + 401 - 500
 
 ## Example Output
+```terminal_session
 tokyo:~/LearningC/ # ./assignment8                                                                           
 Enter a number between 1 and 500: 50
 Your number is between 1 and 100!#
@@ -25,3 +26,4 @@ Your number is between 401 and 500!#
 tokyo:~/LearningC/ # ./assignment8                                                                            
 Enter a number between 1 and 500: 550
 Your number was not in any of our ranges.#
+```
