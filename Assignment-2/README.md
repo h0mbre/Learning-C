@@ -3,7 +3,7 @@ Initialize and assign a value to an integer, float, and char variable. Then prin
 
 ## Example Output
 ```terminal_session
-tokyo:~/LearningC/ # ./assign2                                      
+tokyo:~/LearningC/ # ./assignment2                                      
 5 is an integer!
 3.140000 is a float!
 Hello, World! is a char!
