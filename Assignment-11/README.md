@@ -3,7 +3,7 @@ Ask the user for test scores and then keep asking the user if they would like to
 
 Print the average of the test scores to the second decimal place. 
 
-Hint: Use a `while` loop and look up the `strcmp()` function. 
+Hint: Look up `while` and `for` loops. Look up the `strcmp()` function. 
 
 ## Example Output
 ```terminal_session
