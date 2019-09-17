@@ -3,6 +3,6 @@ Create/define a structure (`struct`) outside of `main()` that includes an `int`,
 
 ## Example Output
 ```terminal_session
-tokyo:~/LearningC/ # ./test                                         
+tokyo:~/LearningC/ # ./assignment20                                         
 This is the int: 50, this is the char: W, this is the float: 3.14
 ```
