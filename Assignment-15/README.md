@@ -2,7 +2,7 @@
 + Create an `int` variable with `int variable`.
 + Create variable that is a pointer to the `int` variable with `int *ptr = &variable`.
 
-Match the following variable references to replace the `x` in the appropriate print statements below:
+Use the following variable references to replace the `x` in the appropriate print statements below:
 + `*ptr`
 + `variable`
 + `ptr`
