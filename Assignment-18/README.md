@@ -36,6 +36,6 @@ int main(void)
 }
 ```
 
-What is the difference? Figure out why we need to terminate our array with `'\0'`.
+What is the difference? Figure out why we need to terminate our array with `'\0'`. [Here](https://www.ascii-code.com/) is a great resource for looking up ASCII codes. 
 
 Extra Credit: Try printing the array in both cases with `puts()` instead of `printf()`, notice anything different? 
