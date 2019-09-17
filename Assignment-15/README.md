@@ -14,7 +14,9 @@ Print statements:
 + `printf("The memory address of the int variable is: %d\n", x);`
 + `printf("The value held at the memory location that the pointer is pointing to is: %d\n", x);`
 
-Hint: Google and read about pointers :)
+Hint: Google and read about pointers
+
+Extra Credit: There's more than one set of correct answers! Find a different way to get the same output. 
 
 ## Example Output
 ```terminal_session
