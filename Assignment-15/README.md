@@ -1,9 +1,9 @@
 ## Assignment 15
-+ Create an int variable
-+ Create variable that is a pointer to the int variable
-+ Print the value of the int variable
++ Create an `int` variable
++ Create variable that is a pointer to the `int` variable
++ Print the value of the `int` variable
 + Print the value of the pointer
-+ Print the memory address of the int variable
++ Print the memory address of the `int` variable
 + Print the value held at the memory location the pointer is pointing to
 
 Hint: Google and read about pointers :)
