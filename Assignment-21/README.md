@@ -4,11 +4,11 @@ Design a struct which will have members that describe an employee's: last name, 
 Pseudo Code:
 ```c
 first struct {
-  members like names, DOB, etc
+  members like: names, DOB, etc
   };
   
 second struct {
-  struct first_struct employee_name_1
+  struct first_struct employee_name_1;
   } employees;
   
 int main () {
