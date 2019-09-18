@@ -11,11 +11,11 @@ Design a second struct which will store two employee names as members. The emplo
 Pseudo Code:
 ```c
 first struct {
-  members like: names, DOB, etc
+  members like: names, employee id, etc
   };
   
 second struct {
-  struct first_struct employee_name_1;
+  struct first_struct employee_1;
   } employees;
   
 int main () {
