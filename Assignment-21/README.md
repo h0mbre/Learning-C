@@ -25,4 +25,27 @@ int main () {
 ```
 
 ## Example Output
+```terminal_session
+tokyo:~/LearningC/ # ./assignment21                                       
+Enter the employee's first name: Roy
+Enter the employee's last name: Higgins
+Enter the employee's ID number: 345
+Enter the last four digits of the employee's SSN: 9832
+Enter the employee's job title (do not include the word 'Engineer'): Senior
 
+Enter the employee's first name: Amanda
+Enter the employee's last name: Nunes
+Enter the employee's ID number: 678
+Enter the last four digits of the employee's SSN: 4521
+Enter the employee's job title (do not include the word 'Engineer'): Junior
+
+Employee information for Roy Higgins: 
+ID: 345
+SSN: 9832
+Title: Senior Engineer
+
+Employee information for Amanda Nunes: 
+ID: 678
+SSN: 4521
+Title: Junior Engineer#      
+```
