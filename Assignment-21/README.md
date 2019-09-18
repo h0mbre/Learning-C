@@ -4,7 +4,7 @@ Design a struct which will have members that describe an employee's: last name, 
 Pseudo Code:
 ```c
 first struct {
-  members
+  members like names, DOB, etc
   };
   
 second struct {
