@@ -12,6 +12,7 @@ The first thing you need to know is that the `unistd.h` header file contains all
 #include <fcntl.h>
 ```
 
+## Open() Syscall
 Next, we need to determine how to open the file using the `open()` syscall. To do this, we can consult [codewiki](http://codewiki.wikidot.com/c:system-calls:open). The function definition according to codewiki is:
 `int open(const char *path, int oflags);`
 
@@ -34,4 +35,55 @@ Codewiki also provides a list legal values for `int oflags`:
 
 `O_EXCL` -	Combined with the O_CREAT option, it ensures that the caller must create the file. If the file already exists, the call will fail.
 
-We'll open our file in read and write mode, so for this we'll use `O_RDWR`
+We'll open our file in read and write mode, so for this we'll use `O_RDWR`. This is our code up until this point:
+```c
+#include <stdio.h>
+#include <unistd.h>
+#include <fcntl.h>
+
+int main (void)
+{
+	open("assignment24.txt", O_RDWR);
+
+	return 0;
+}
+```
+We've replaced `const char *path` with the name of our file, relative pathed since we are in the same directory, and we've replaced `int oflags` with `O_RDWR` so that we can perform both reads and writes, although in case only a write. 
+
+Next, we want to include a mechanism for ensuring that the call succeeded. The man page for `open()` states that upon successful completion, the function will return a non-zero integer as a `file descriptor` and if it fails, it will return a `-1` value. So let's add some logic to our program that makes sure the returned value is not `-1`. 
+
+Let's create a variable called `filedescriptor` like they have done on Codewiki, and set it equal to the return value of our function. Next, we'll add control flow that determines whether or not the function failed. Now our program looks like this:
+```c
+#include <stdio.h>
+#include <unistd.h>
+#include <fcntl.h>
+
+int main (void)
+{
+	int filedescriptor;
+
+	filedescriptor = open("assignment24.txt", O_RDWR);
+		if (filedescriptor != -1)
+		{
+			printf("The file was successfully opened.");
+		}
+		else 
+		{
+			printf("The file failed to open!");
+		}
+	
+	return 0;
+}
+```
+
+Let's run it and check the output:
+```terminal_session
+tokyo:~/LearningC/ # ./assignment24c                                         
+The file was successfully opened.
+```
+
+Awesome! We got back a non-zero, non-negative-one file descriptor value. Let's change the name of the file in our code to `idontexist.txt` and run it to see if it fails. 
+```terminal_session
+tokyo:~/LearningC/ # ./assignment24                                         
+The file failed to open!# 
+```
