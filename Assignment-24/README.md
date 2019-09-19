@@ -19,6 +19,7 @@ Next, we need to determine how to open the file using the `open()` syscall. To d
 + `int oflags` is "A bitwise 'or' separated list of values that determine the method in which the file is to be opened (whether it should be read only, read/write, whether it should be cleared when opened, etc)"
 
 Codewiki also provides a list legal values for `int oflags`: 
+
 O_RDONLY	Open the file so that it is read only.
 
 O_WRONLY	Open the file so that it is write only.
