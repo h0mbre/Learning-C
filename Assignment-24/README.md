@@ -20,17 +20,18 @@ Next, we need to determine how to open the file using the `open()` syscall. To d
 
 Codewiki also provides a list legal values for `int oflags`: 
 
-O_RDONLY - Open the file so that it is read only.
+`O_RDONLY` - Open the file so that it is read only.
 
-O_WRONLY - Open the file so that it is write only.
+`O_WRONLY` - Open the file so that it is write only.
 
-O_RDWR - Open the file so that it can be read from and written to.
+`O_RDWR` - Open the file so that it can be read from and written to.
 
-O_APPEND -	Append new information to the end of the file.
+`O_APPEND` -	Append new information to the end of the file.
 
-O_TRUNC -	Initially clear all data from the file.
+`O_TRUNC` -	Initially clear all data from the file.
 
-O_CREAT -	If the file does not exist, create it. If the O_CREAT option is used, then you must include the third parameter.
+`O_CREAT` -	If the file does not exist, create it. If the O_CREAT option is used, then you must include the third parameter.
 
-O_EXCL -	Combined with the O_CREAT option, it ensures that the caller must create the file. If the file already exists, the call will fail.
+`O_EXCL` -	Combined with the O_CREAT option, it ensures that the caller must create the file. If the file already exists, the call will fail.
 
+We'll open our file in read and write mode, so for this we'll use `O_RDWR`
