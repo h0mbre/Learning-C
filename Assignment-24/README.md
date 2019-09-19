@@ -85,11 +85,16 @@ tokyo:~/LearningC/ # ./assignment24
 The open operation succeeded!#
 ```
 
-Awesome! We got back a non-zero, non-negative-one file descriptor value. Let's change the name of the file in our code to `idontexist.txt` and run it to see if it fails. 
+Awesome, our code apparently worked. Let's check the directory and see the permissions for the newly created `testfile.txt`.
+
 ```terminal_session
-tokyo:~/LearningC/ # ./assignment24                                         
-The file failed to open!
+tokyo:~/LearningC/ # ls -lah                                       
+total 32K
+drwxr-xr-x  2 root root 4.0K Sep 19 19:46 .
+drwxr-xr-x 35 root root 4.0K Sep 19 19:46 ..
+-rw-r--r--  1 root root  328 Sep 19 19:46 assignment24.c
+-rwxr-xr-x  1 root root  16K Sep 19 19:42 assignment24
+-rwx------  1 root root    0 Sep 19 19:42 testfile.txt
 ```
 
-Awesome again! We got it to fail in a predictable manner, our code works well thus far. Now we need to write to the file. 
-
+Awesome, it was created with `700` permissions just like we intended. Next, we'll need to write to the file!
