@@ -66,10 +66,12 @@ int main (void)
 		if (filedescriptor != -1)
 		{
 			printf("The file was successfully opened.");
+			return 0;
 		}
 		else 
 		{
 			printf("The file failed to open!");
+			return 1;
 		}
 	
 	return 0;
@@ -85,5 +87,25 @@ The file was successfully opened.
 Awesome! We got back a non-zero, non-negative-one file descriptor value. Let's change the name of the file in our code to `idontexist.txt` and run it to see if it fails. 
 ```terminal_session
 tokyo:~/LearningC/ # ./assignment24                                         
-The file failed to open!# 
+The file failed to open!
 ```
+
+Awesome again! We got it to fail in a predictable manner, our code works well thus far. Now we need to write to the file. 
+
+## Write() Syscall
+The codewiki site provides a nice digestable definition of the function for us as: `ssize_t write(int fildes, const void *buf, size_t nbytes);`
+
+It further provides us with the meaning of these arguments:
+`int fildes` - The file descriptor of where to write the output. You can either use a file descriptor obtained from the open system call, or you can use 0, 1, or 2, to refer to standard input, standard output, or standard error, respectively.
+`const void *buf` - A pointer to a buffer of at least nbytes bytes, which will be written to the file.
+`size_t nbytes` - The number of bytes to write. If smaller than the provided buffer, the output is truncated.
+`return value` - Returns the number of bytes that were written. If value is negative, then the system call returned an error.
+
+The file descriptor we already have from the return value of our `open()` operation, so that's taken care of. We could've alternatively written to standard output with a `1` or standard error with a `2`. We will save the error output for checking to make sure our code worked later. 
+
+`const void *buf` will be the message we want written.
+
+`size_t nbytes` will be the size of the message, from the example on codewiki they used `36` for the message `This will be output to testfile.txt\n`. That is 36 characters long, so we'll just need a character count of our message for this parameter. 
+
+The return value is the number of bytes that were written, so we know if this value is not the length of our message, the write operation did not succeed. Let's write a functioning write syscall before worry about error handling. Let's plug in our parameters. 
+
