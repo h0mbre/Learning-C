@@ -61,7 +61,7 @@ We've now completed our struct! That's two of the three `bind()` arguments down.
 
 Lastly, we need `socklen_t addrlen` which according to the `bind()` manpage is just the size, in bytes, of the struct pointed to in the parameter we just filled with our newly created struct. So this argument will simply be `sizeof(server_addr)`, something we've already done before. 
 
-Altogether, our bind argument should look like this bind(`sockfd <figure this out by yourself>, (struct sockaddr *)&server_addr, sizeof(server_addr));`
+Altogether, our bind argument should look like this `bind(sockfd <figure this out by yourself>, (struct sockaddr *)&server_addr, sizeof(server_addr));`
 
 We have `(struct sockaddr *)` which creates a pointer of type sockaddr (a struct), and we point it to the location in memory of our `server_addr` struct with the `&`. Lastly, we tacked on our `sizeof()` final argument. Not too bad and that was by far the hardest syscall in the program!
 
