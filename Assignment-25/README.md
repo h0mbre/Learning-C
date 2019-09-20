@@ -107,6 +107,16 @@ int main (void)
 }
 ```
 
+Running the program seems to indicate successes with both operations:
+```terminal_session
+tokyo:~/LearningC/ # ./assignment25                                 
+The open operation succeeded!
+The write operation succeeded!#                                                
+tokyo:~/LearningC/ # cat testfile.txt                               
+Writing test data to the file#  
+```
+
+Now we just need to add a `close()` operation to our file so that our file is not left open, I'll leave this excercise to you!
 
 
 
