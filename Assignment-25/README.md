@@ -27,5 +27,86 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>>
 ```
 
+Ok, so our message is 30 bytes long. At this point, we have everything we need to make a `write()` syscall. Our code now looks like this: 
+```terminal_session
+#include <stdio.h>
+#include <unistd.h>
+#include <fcntl.h>
+
+int main (void)
+{
+	int filedescriptor;
+
+	filedescriptor = open("testfile.txt", O_WRONLY | O_CREAT, S_IRWXU);
+
+	if (filedescriptor < 0)
+	{
+		printf("The open operation failed...");
+		return -1;
+	}
+	else 
+	{
+		printf("The open operation succeeded!");
+		
+	}
+
+	write(filedescriptor, "Writing test data to the file", 30);
+	
+}
+```
+
+If we run this, we see that our write operation succeeded!
+```terminal_session
+tokyo:~/LearningC/ # gcc assignment25.c -o assignment25                       
+tokyo:~/LearningC/ # ./assignment25                                          
+The open operation succeeded!#      
+tokyo:~/LearningC/ # cat testfile.txt                   
+Writing test data to the file#
+```
+Awesome, now to build in some error handling. The codewiki page tells us that the return value is the number of bytes we wrote to the file, so we know that if we don't get a `30` return value, our operation didn't succeed. Let's add some logic to save the return value in the variable `writertn` and return a `-1` if it fails. 
+
+Our code now looks like this:
+```c
+#include <stdio.h>
+#include <unistd.h>
+#include <fcntl.h>
+
+int main (void)
+{
+	int filedescriptor;
+
+	filedescriptor = open("testfile.txt", O_WRONLY | O_CREAT, S_IRWXU);
+
+	if (filedescriptor < 0)
+	{
+		printf("The open operation failed...");
+		return -1;
+	}
+	else 
+	{
+		printf("The open operation succeeded!\n");
+		
+	}
+
+	int writertn;
+
+	writertn = write(filedescriptor, "Writing test data to the file", 30);
+
+	if (writertn != 30)
+	{
+		printf("The write operation failed...");
+		return -1;
+	}
+	else
+	{
+		printf("The write operation succeeded!");
+	}
+
+	return 0;
+
+}
+```
+
+
 
 
