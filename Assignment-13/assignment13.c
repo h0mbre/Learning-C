@@ -62,6 +62,8 @@ int main(void)
 	//initialize a new float variable which will be our average
 	//use the (float) operator to change the integer variable being divided into a float operation
 	float ppg = (float)(highest_total / 4);
-	printf("Player #%d had the scoring average at %.2f points per game.\n", player_id, ppg);
+	printf("Player #%d had the highest scoring average at %.2f points per game.\n", player_id, ppg);
+	
+	return 0;
 
 }
