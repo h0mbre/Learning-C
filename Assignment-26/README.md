@@ -5,6 +5,8 @@ I'm going to tell you the syscalls we need to make in order to accomplish this a
 
 A good resource throughout this excercise will be the socket programming tutorial here: http://www.cs.rpi.edu/~moorthy/Courses/os98/Pgms/socket.html **Keep referencing this document for every single parameter, every single function.**
 
+@epi052 also recommended the following great resource: https://beej.us/guide/bgnet/html/multi/index.html
+
 ## Getting Started
 
 ### Header Files
@@ -66,6 +68,13 @@ Altogether, our bind argument should look like this `bind(sockfd <figure this ou
 We have `(struct sockaddr *)` which creates a pointer of type sockaddr (a struct), and we point it to the location in memory of our `server_addr` struct with the `&`. Lastly, we tacked on our `sizeof()` final argument. Not too bad and that was by far the hardest syscall in the program!
 
 ### Listen()
+The good news is that this syscall is very straight forward. I'd say for the backlog you can specify `0`. 
+
+### Accept()
+For this syscall, read the description of the syscall here: https://www.geeksforgeeks.org/accept-system-call/. For this excercise, we can go ahead and use `NULL` as the value for the 2nd and 3rd arguments. **Pay close attention to the return value of this call. This value will be used in subsequent syscalls.**
+
+## Dup2()
+This syscall itself isn't tricky, but it's implementation in our program is. 
 
 
 
