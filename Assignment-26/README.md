@@ -3,7 +3,7 @@ Now that we've successfully used syscalls and we know how to parse arguments wit
 
 I'm going to tell you the syscalls we need to make in order to accomplish this and also try and drop some hints about potential sticking points. I won't be fully walking through this one like our previous excercise, but as always there will be a solution made available should you get stuck (`assignment26.c`). 
 
-A good resource throughout this excercise will be the socket programming tutorial here: http://www.cs.rpi.edu/~moorthy/Courses/os98/Pgms/socket.html
+A good resource throughout this excercise will be the socket programming tutorial here: http://www.cs.rpi.edu/~moorthy/Courses/os98/Pgms/socket.html **Keep referencing this document for every single parameter, every single function.**
 
 ## Getting Started
 
@@ -23,7 +23,9 @@ Pull these header files up and read through them, learn what they're for and why
 The first syscall we're going to make is `socket()`. The explanation for socket is not very difficult, you can do this! Make sure you pay attention to the return value, this value will be needed for subsequent syscalls. 
 
 ### Bind()
-The next syscall will be `bind()`. This one is a bit of a doozie so I will help you with this one. We first need to build a struct which we're used to. The struct definition we'll be using is the one for `sockaddr_in`. This is because `bind()` takes an argument that is a pointer to a struct of type `sockaddr`; however, we actually use `sockaddr_in` as our struct type because they are the same size and according to the manpage for bind, "the only purpose of \[the sockaddr structure\] is to cast the structure pointer passed in addr in order to avoid compiler warnings."
+The next syscall will be `bind()`. This one is a bit of a doozie so I will help you with this one. The function definition for bind is: `int bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen)`. We can get the `sockfd` parameter from our `socket()` call. 
+
+Next we need to build a struct which we're used to. The struct definition we'll be using is the one for `sockaddr_in`. This is because `bind()` takes an argument that is a pointer to a struct of type `sockaddr`; however, we actually use `sockaddr_in` as our struct type because they are the same size and according to the manpage for bind, "the only purpose of \[the sockaddr structure\] is to cast the structure pointer passed in addr in order to avoid compiler warnings."
 
 We first need to create an instace of the `sockaddr_in` struct called `server_addr` as this code will be run on the server in a client-server paradigm of network connections:
 ```c
@@ -52,6 +54,19 @@ struct in_addr {
 };
 ```
 So, to set the value to the `sin_addr` member, we need to specify: `sever_addr.sin_addr.s_addr = <insert value>`. What does `sin_addr` even do? It specifies the address of the machine we want to listen on (the server). From the ip manpage: "*When a process wants to receive new incoming packets or connections, it should bind a socket to a local interface address using bind(2). In this case, only one IP socket may be bound to any given local(address, port) pair.  When INADDR_ANY is specified in the bind call, the socket will be bound to all local interfaces.*" We want to listen on all interfaces, so we'll set this value to `INADDR_ANY`. We can set it with: `sever_addr.sin_addr.s_addr = INADDR_ANY` 
+
+The last member of our struct is `sin_port`, and according to the aforementioned `sockaddr_in` definition, we need to use `htons()` function to convert our port value to network byte order. This should be relatively simple! `server_addr.sin_port = htons(5555)` should do the trick. 
+
+We've now completed our struct! That's two of the three `bind()` arguments down. 
+
+Lastly, we need `socklen_t addrlen` which according to the `bind()` manpage is just the size, in bytes, of the struct pointed to in the parameter we just filled with our newly created struct. So this argument will simply be `sizeof(server_addr)`, something we've already done before. 
+
+Altogether, our bind argument should look like this bind(`sockfd <figure this out by yourself>, (struct sockaddr *)&server_addr, sizeof(server_addr));`
+
+We have `(struct sockaddr *)` which creates a pointer of type sockaddr (a struct), and we point it to the location in memory of our `server_addr` struct with the `&`. Lastly, we tacked on our `sizeof()` final argument. Not too bad and that was by far the hardest syscall in the program!
+
+
+
 
 
 
