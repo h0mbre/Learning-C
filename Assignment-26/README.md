@@ -65,7 +65,7 @@ Altogether, our bind argument should look like this `bind(sockfd <figure this ou
 
 We have `(struct sockaddr *)` which creates a pointer of type sockaddr (a struct), and we point it to the location in memory of our `server_addr` struct with the `&`. Lastly, we tacked on our `sizeof()` final argument. Not too bad and that was by far the hardest syscall in the program!
 
-
+### Listen()
 
 
 
