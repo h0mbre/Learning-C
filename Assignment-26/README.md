@@ -80,12 +80,6 @@ This syscall itself isn't tricky, but its implementation in our program is. What
 This is our last syscall. We want to use this syscall to execute `/bin/sh` so that our client can have a shell! This syscall can be called with the name of the program you want executed and then two `NULL` arguments for this program. 
 
 ## Summary
-This is the bare minimum amount of information you need. If this is your first time working with sockets, you will probably spend a lot of researching, that is perfectly fine and intended. Don't get frustrated, if you run into any problems reach out! As a last resort, check the solution which has been commented. 
+If this is your first time working with sockets, you will probably spend a lot of time researching, that is perfectly fine and intended. Don't get frustrated, if you run into any problems reach out. As a last resort, check the solution which has been commented. 
 
 Extra Credit: Add error checking to your program!
-
-
-
-
-
- 
