@@ -36,7 +36,23 @@ Next, we need to start assigning values to the members of this struct. The relev
 
 `sin_family`, if we read the manpages **like we always do**, can take values defined inside of `<sys/socket.h>`. We're interested in creating a TCP bind shell, so we'll need to use the `AF_INET` value for this struct member as it's for 'internetwork: UDP, TCP, etc' addresses families. So we can give this a value with our dot notation we learned with: `server_adder.sin_family = AF_INET;`. Easy! We've done that a bunch already.
 
-Next, we need to set `sin_addr`. The `sin_addr` member is actually of type `struct in_addr` which is also defined in `<netinet/in.h>`. The struct `in_addr` contains only one member, an unsigned long `s_addr`. So we'll need to double up our dot notation for this one since we're creating a value for a member that is a struct of another struct. (We did this already as well.) 
+Next, we need to set `sin_addr`. The `sin_addr` member is actually of type `struct in_addr` which is also defined in `<netinet/in.h>`. The struct `in_addr` contains only one member, an unsigned long `s_addr`. So we'll need to double up our dot notation for this one since we're creating a value for a member that is a struct of another struct. (We did this already as well.) Both struct prototypes are detailed [here](https://www.gta.ufrj.br/ensino/eel878/sockets/sockaddr_inman.html) as follows:
+```c
+#include <netinet/in.h>
+
+struct sockaddr_in {
+    short            sin_family;   // e.g. AF_INET
+    unsigned short   sin_port;     // e.g. htons(3490)
+    struct in_addr   sin_addr;     // see struct in_addr, below
+    char             sin_zero[8];  // zero this if you want to
+};
+
+struct in_addr {
+    unsigned long s_addr;  // load with inet_aton()
+};
+```
+So, to set the value to the `sin_addr` member, we need to specify: `sever_addr.sin_addr.s_addr = <insert value>`. What does `sin_addr` even do? It specifies the address of the machine we want to listen on (the server). From the ip manpage: "*When a process wants to receive new incoming packets or connections, it should bind a socket to a local interface address using bind(2). In this case, only one IP socket may be bound to any given local(address, port) pair.  When INADDR_ANY is specified in the bind call, the socket will be bound to all local interfaces.*" We want to listen on all interfaces, so we'll set this value to `INADDR_ANY`. We can set it with: `sever_addr.sin_addr.s_addr = INADDR_ANY` 
+
 
 
 
