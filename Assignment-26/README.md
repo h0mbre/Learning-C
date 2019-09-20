@@ -74,7 +74,7 @@ The good news is that this syscall is very straight forward. I'd say for the bac
 For this syscall, read the description of the syscall here: https://www.geeksforgeeks.org/accept-system-call/. For this excercise, we can go ahead and use `NULL` as the value for the 2nd and 3rd arguments. **Pay close attention to the return value of this call. This value will be used in subsequent syscalls.**
 
 ### Dup2()
-This syscall itself isn't tricky, but its implementation in our program is. What duplicate does is take an old file descriptor (returned from our `accept()` syscall, and duplicates it to stdin, stdout, and stderr. These three file descriptors have values of `0`, `1`, and `2` respectively, which we learned in our last assignment. Use `dup2()` three times to copy the old file descriptor to these three new ones. (Extra credit: implement a for loop.)
+This syscall itself isn't tricky, but its implementation in our program is. What duplicate does is take an old file descriptor (returned from our `accept()` syscall), and duplicates it to stdin, stdout, and stderr. These three file descriptors have values of `0`, `1`, and `2` respectively, which we learned in our last assignment. Use `dup2()` three times to copy the old file descriptor to these three new ones. (Extra credit: implement a for loop.)
 
 ### Execve()
 This is our last syscall. We want to use this syscall to execute `/bin/sh` so that our client can have a shell! This syscall can be called with the name of the program you want executed and then two `NULL` arguments for this program. 
