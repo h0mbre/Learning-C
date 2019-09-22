@@ -18,6 +18,52 @@ tokyo:/lib/ # ldd /bin/ls
 	libpthread.so.0 => /lib/i386-linux-gnu/libpthread.so.0 (0xb7c59000)
 ```
 
-We see a reference to `libc.so.6` and see that it's located at `/lib/i386-linux-gnu/libc.so.6`. This is where 
+We see a reference to `libc.so.6` and see that it's located at `/lib/i386-linux-gnu/libc.so.6`. I recommend you read more about shared libraries, dynamic linking/loading, and static linking. There's a ton of useful information there for noobs like us. 
+
+What we're after, is finding out what order the dynamic linker finds and loads shared libraries needed by a program. According to the [ld.so manpage](http://man7.org/linux/man-pages/man8/ld.so.8.html), the order is:
+"*Using the directories specified in the DT_RPATH dynamic section
+attribute of the binary if present and DT_RUNPATH attribute does
+not exist.  Use of DT_RPATH is deprecated.*
+
+*Using the environment variable LD_LIBRARY_PATH, unless the
+executable is being run in secure-execution mode (see below), in
+which case this variable is ignored.*
+
+*Using the directories specified in the DT_RUNPATH dynamic section
+attribute of the binary if present.  Such directories are searched
+only to find those objects required by DT_NEEDED (direct
+dependencies) entries and do not apply to those objects' children,
+which must themselves have their own DT_RUNPATH entries.  This is
+unlike DT_RPATH, which is applied to searches for all children in
+the dependency tree.*
+
+*From the cache file /etc/ld.so.cache, which contains a compiled
+list of candidate shared objects previously found in the augmented
+library path.  If, however, the binary was linked with the -z
+nodeflib linker option, shared objects in the default paths are
+skipped.  Shared objects installed in hardware capability
+directories (see below) are preferred to other shared objects.*
+
+*In the default path /lib, and then /usr/lib.  (On some 64-bit
+architectures, the default paths for 64-bit shared objects are
+/lib64, and then /usr/lib64.)  If the binary was linked with the
+-z nodeflib linker option, this step is skipped.*"
+
+Or, as they put it on the ketansingh blogpost:
+"*directories listed in the LD_LIBRARY_PATH environment variable.
+directories listed in the executable’s rpath.
+directories on the system search path, which consists of the entries in /etc/ld.so.conf plus /lib and /usr/lib"*
+
+We can also see in the `ld.so` manpage that there is an option for an `LD_PRELOAD` environment variable which will always be sought first. Outside of declaring an environment variable, we can also use the `/etc/ld.so.preload` file to list the file path of a `.so` to load first. (Technically, `LD_PRELOAD` will load before an `.so` specified in the `/etc/ld.so.preload` file.)
+
+## So, What? 
+So what is the significance of all of this? Well, if we can have a binary reference a malicious shared library instead of the legitimate shared library, we could have the binary behave in a way that is beneficial to us and potentially invisible to the end user of the binary. What if, for example, we redefined the `write()` syscall in a malicious shared library so that when it's invoked, it silently sends a copy of its write buffer to a file somewhere and then continues a normal `write()` operation? The end user of the binary invoking `write()` would have no idea their content was being copied to another file on the system. 
+
+This 
+
+
+
+
+
 
 
