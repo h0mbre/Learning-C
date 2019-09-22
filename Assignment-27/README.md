@@ -59,7 +59,48 @@ We can also see in the `ld.so` manpage that there is an option for an `LD_PRELOA
 ## So, What? 
 So what is the significance of all of this? Well, if we can have a binary reference a malicious shared library instead of the legitimate shared library, we could have the binary behave in a way that is beneficial to us and potentially invisible to the end user of the binary. What if, for example, we redefined the `write()` syscall in a malicious shared library so that when it's invoked, it silently sends a copy of its write buffer to a file somewhere and then continues a normal `write()` operation? The end user of the binary invoking `write()` would have no idea their content was being copied to another file on the system. 
 
-This 
+This technique is one way in which its possible to hook syscalls. The advantage as an attacker of using `LD_PRELOAD` instead of specifying an `.so` in the `/etc/ld.so.preload` file is that with the environment variable you can specify a binary for which it applies. If you use `/etc/ld.so.preload`, it applies to all syscalls system wide. 
+
+The aforementioned blog posts do a great job of explaining all of this, I highly recommend you read through them carefully! 
+
+## Getting Evil
+In the [blog.netspi.com blog post](https://blog.netspi.com/function-hooking-part-i-hooking-shared-library-function-calls-in-linux/), they hook the `puts()` syscall with the following malicious shared library: 
+```c
+#include <stdio.h>
+#include <unistd.h>
+#include <dlfcn.h>
+int puts(const char *message)
+{
+int (*new_puts)(const char *message);
+int result;
+new_puts = dlsym(RTLD_NEXT, "puts");
+if(strcmp(message, "Hello world!n") == 0)
+{
+result = new_puts("Goodbye, cruel world!n");
+}
+else
+{
+result = new_puts(message);
+}
+return result;
+}
+```
+
+You can see: 
++ `int puts(const char *message)` is a function declaration that perfectly matches the real `puts` function so our binary will reference this on its first stop instead of continuing on to other shared libraries,
++ `int (*new_puts)(const char *message)` is a new function declaration that will point to the legitimate `puts()` call, it also matches the real `puts()` function definition exactly, 
++ `int result` is the return value of a `puts()` call,
++ `new_puts = dlsym(RTLD_NEXT, "puts")` actually initializes our pointer to the `new_puts` function and returns the next instance of the `"puts"` with `RTLD_NEXT`. `dlsym` returning thie value to `new_puts` now means that our function is pointing to the legitimate `puts()` call,
++ `if(strcmp(message, "Hello world!n") == 0` is comparing the message that is passed to `puts()` as the parameter with the string `"Hello world!n"`, if the result of the comparison is `0` (`strcmp()` returns a `0` if there is a match), then it instead feeds the `message` of `"Goodbye, cruel world!n"` to `puts()`. If there is no match, execution is just passed to the normal `puts()` call as intended. 
+
+So if this shared library is loaded into memory and used by a binary, the only way the binary would behave differently is if it made use of a `puts()` call with `"Hello world!n"` in the message parameter and it would change the message to `"Goodbye, cruel world!n"`.
+
+Very very sick. 
+
+## Assignment Details
+The blog posts show you how to hook `puts()` and `SSL_write()` syscalls. Your assignment is to hook the `write()` syscall and replace `"Hello, World!"` in write buffers with `"Goodbye, cruel world!"`. 
+
+We already know how to use `write()`. We know how to hook `puts()`. The syntax won't be identical but the concepts and library structure will be very similar. The only clue I'll give you is that to compile your shared library, I found success with the following syntax: `gcc -ldl malicious.c -fPIC -shared -D_GNU_SOURCE -o malicious.so`. 
 
 
 
