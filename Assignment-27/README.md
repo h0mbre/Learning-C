@@ -93,7 +93,7 @@ You can see:
 + `new_puts = dlsym(RTLD_NEXT, "puts")` actually initializes our pointer to the `new_puts` function and returns the next instance of the `"puts"` with `RTLD_NEXT`. `dlsym` returning thie value to `new_puts` now means that our function is pointing to the legitimate `puts()` call,
 + `if(strcmp(message, "Hello world!n") == 0` is comparing the message that is passed to `puts()` as the parameter with the string `"Hello world!n"`, if the result of the comparison is `0` (`strcmp()` returns a `0` if there is a match), then it instead feeds the `message` of `"Goodbye, cruel world!n"` to `puts()`. If there is no match, execution is just passed to the normal `puts()` call as intended. 
 
-So if this shared library is loaded into memory and used by a binary, the only way the binary would behave differently is if it made use of a `puts()` call with `"Hello world!n"` in the message parameter and it would change the message to `"Goodbye, cruel world!n"`.
+So if this shared library is loaded and used by a binary, the only way the binary would behave differently is if it made use of a `puts()` call with `"Hello world!n"` in the message parameter and it would change the message to `"Goodbye, cruel world!n"`.
 
 Very very sick. 
 
@@ -102,9 +102,16 @@ The blog posts show you how to hook `puts()` and `SSL_write()` syscalls. Your as
 
 We already know how to use `write()`. We know how to hook `puts()`. The syntax won't be identical but the concepts and library structure will be very similar. The only clue I'll give you is that to compile your shared library, I found success with the following syntax: `gcc -ldl malicious.c -fPIC -shared -D_GNU_SOURCE -o malicious.so`. 
 
+To test your malicious library:
++ compile it,
++ create and compile a program which uses `write()` to write "Hello, World!" to stdout,
++ see what is printed to the terminal. 
 
-
-
-
-
-
+## Example Output
+```terminal_session
+tokyo:~/LearningC/ # ./output
+Hello, World!#
+tokyo:~/LearningC/ # export LD_PRELOAD=/root/LearningC/write.so
+tokyo:~/LearningC/ # ./output
+Goodbye, cruel world!#
+```
