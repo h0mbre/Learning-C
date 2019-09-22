@@ -18,5 +18,6 @@ tokyo:/lib/ # ldd /bin/ls
 	libpthread.so.0 => /lib/i386-linux-gnu/libpthread.so.0 (0xb7c59000)
 ```
 
+We see a reference to `libc.so.6` and see that it's located at `/lib/i386-linux-gnu/libc.so.6`. This is where 
 
 
