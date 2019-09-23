@@ -1,5 +1,5 @@
 ## Assignment 18
-Compile the following code and examine the output:
+Compile and run the following code and examine the output:
 
 ```c
 #include <stdio.h>
