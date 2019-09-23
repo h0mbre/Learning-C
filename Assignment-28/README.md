@@ -3,6 +3,8 @@ By now you can do a lot with C. You've used syscalls, you created shared librari
 
 There is still a lot to learn, we barely even scratched the surface of C. We didn't even discuss data typing much! 
 
-Your assignment is to read about the Jynx userland rootkit which used `LD_PRELOAD` and try to create your own version. This is some good analysis of some of the Jynx techniques: http://www.infosecisland.com/blogview/22440-Analyzing-Jynx-and-LDPRELOAD-Based-Rootkits.html 
+Your assignment is to read about the Jynx userland rootkit which used `LD_PRELOAD` and try to create your own version **for educational purposes**. This is some good analysis of some of the Jynx techniques: http://www.infosecisland.com/blogview/22440-Analyzing-Jynx-and-LDPRELOAD-Based-Rootkits.html 
 
 There is no limit except how much research you want to do and your imagination. Your rootkit can hide files, hide connections, open ports, steal SSH data, etc. Let me know what you come up with! I will make a blog post detailing mine when I'm finished with it. 
+
+**You should explain how to mitigate and discover your rootkit's techniques.**
