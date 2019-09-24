@@ -33,7 +33,7 @@ int main(void)
   }
   else
   {
-  	printf("The solution using the '+' operator is: %f, but you might want to double check that...\n", solution2);
+  	printf("The solution using the '-' operator is: %f, but you might want to double check that...\n", solution2);
   }
 
   return 0;
