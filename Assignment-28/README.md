@@ -10,3 +10,5 @@ Jynx was pretty awesome. It hid processes, hid netstat connections, hid files, p
 There is no limit except how much research you want to do and your imagination. Your rootkit can hide files, hide connections, open ports, steal SSH data, etc. Let me know what you come up with! I will make a blog post detailing mine when I'm finished with it. 
 
 **You should explain how to mitigate and discover your rootkit's techniques.**
+
+My write-up has been posted here!!: https://h0mbre.github.io/Learn-C-By-Creating-A-Rootkit/
