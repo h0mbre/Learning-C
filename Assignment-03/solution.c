@@ -7,8 +7,6 @@
 #include <string.h>
 #include <stdlib.h>
 
-#define MAX_NAME_SIZE 30
-
 char *getName() {
 	char *input = malloc(sizeof(char));
 	char ch = EOF;	
