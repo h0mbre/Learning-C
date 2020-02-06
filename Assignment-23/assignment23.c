@@ -2,15 +2,12 @@
 #include <string.h>
 
 struct example {
-
 	int integer;
-
 };
 
 int main (void)
 {
 	struct example *ptr;
-
 	struct example test;
 
 	ptr = &test;
