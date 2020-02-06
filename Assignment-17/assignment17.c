@@ -1,9 +1,8 @@
 #include <stdio.h>
 
-
 void hello(void);
 
-int main(void) 
+int main(void)
 {
 	hello();
 
