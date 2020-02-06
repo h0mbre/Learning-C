@@ -2,11 +2,11 @@
 #include <string.h>
 
 struct data {
-char first[20];
-char last[20];
-int employee_id;
-int last_4_SSN;
-char title[20];
+	char first[20];
+	char last[20];
+	int employee_id;
+	int last_4_SSN;
+	char title[20];
 };
 
 struct employees {
@@ -15,8 +15,7 @@ struct employees {
 } engineering_dept;
 
 int main(void)
-{	
-	
+{
 	//scanf the input into the correct variable
 	//engineering_dept = name of the instance of the 'employees' struct
 	//employee1 = member of the 'employees' struct
@@ -62,7 +61,6 @@ int main(void)
 	printf("\nID: %d", engineering_dept.employee2.employee_id);
 	printf("\nSSN: %d", engineering_dept.employee2.last_4_SSN);
 	printf("\nTitle: %s Engineer", engineering_dept.employee2.title);
-
 
 	return 0;
 }
