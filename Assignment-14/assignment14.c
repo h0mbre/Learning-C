@@ -6,5 +6,5 @@ int main(void)
 
 	int *ptr = &number;
 
-	printf("The value of our pointer is: %d", ptr);
+	printf("The value of our pointer is: %p", ptr);
 }
