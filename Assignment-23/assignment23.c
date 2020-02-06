@@ -19,7 +19,7 @@ int main (void)
 	printf("%d\n", test.integer);
 
 	ptr->integer = 7;
-	printf("%d", test.integer);
+	printf("%d\n", test.integer);
 
 	return 0;
 }
