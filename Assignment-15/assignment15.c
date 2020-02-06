@@ -17,4 +17,6 @@ int main(void)
 
   //using the asterisk means we will print the value held at the memory address pointed to by the pointer
   printf("The value held at the memory location that the pointer is pointing to is: %d\n", *ptr);
+
+  return 0;
 }
