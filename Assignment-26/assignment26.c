@@ -31,4 +31,6 @@ int main(void) {
 
     // Our final syscall is execve(), which runs a program fed to it as a string
     execve("/bin/sh", NULL, NULL);
+
+    return 0;
 }
