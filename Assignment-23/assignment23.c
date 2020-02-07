@@ -1,16 +1,12 @@
 #include <stdio.h>
-#include <string.h>
 
 struct example {
-
 	int integer;
-
 };
 
 int main (void)
 {
 	struct example *ptr;
-
 	struct example test;
 
 	ptr = &test;
@@ -22,7 +18,7 @@ int main (void)
 	printf("%d\n", test.integer);
 
 	ptr->integer = 7;
-	printf("%d", test.integer);
+	printf("%d\n", test.integer);
 
 	return 0;
 }
