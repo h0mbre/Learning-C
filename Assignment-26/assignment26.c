@@ -34,21 +34,21 @@ int main(void) {
     }
 
     // Our fifth syscall, dup2(), is used 3 times
-    if(dup2(conn_sock, 0) == -1) {
+    if(dup2(conn_sock, STDIN_FILENO) == -1) {
          perror("Failed to create copy of stdin");
          close(conn_sock);
          close(listen_sock);
          return errno;
     }
 
-    if(dup2(conn_sock, 1) == -1) {
+    if(dup2(conn_sock, STDOUT_FILENO) == -1) {
          perror("Failed to create copy of stdout");
          close(conn_sock);
          close(listen_sock);
          return errno;
     }
 
-    if(dup2(conn_sock, 2) == -1) {
+    if(dup2(conn_sock, STDERR_FILENO) == -1) {
          perror("Failed to create copy of stderr");
          close(conn_sock);
          close(listen_sock);
