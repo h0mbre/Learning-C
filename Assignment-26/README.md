@@ -82,4 +82,23 @@ This is our last syscall. We want to use this syscall to execute `/bin/sh` so th
 ## Summary
 If this is your first time working with sockets, you will probably spend a lot of time researching, that is perfectly fine and intended. Don't get frustrated, if you run into any problems reach out. As a last resort, check the solution which has been commented.
 
-Extra Credit: Add error checking to your program!
+## Extra Credits
+
+**Extra Credit I**: Read about [getaddrinfo()](http://man7.org/linux/man-pages/man3/getaddrinfo.3.html) and use it to setup the `struct sockaddr_in`. Don't forget to free your resources with [freeaddrinfo()](https://linux.die.net/man/3/freeaddrinfo).
+
+**Extra Credit  II**: Make the port configurable via command line interface (Read about `argv` and `argc`).
+
+**Extra Credit III**: Accept parallel connections and prevent the server from exiting when a client disconnects. Therefore [accept()](https://linux.die.net/man/2/accept) connections in a while loop and [fork()](https://linux.die.net/man/2/fork) a child process, which handles the incoming connection. To prevent dropping parallel incoming connections, you should also read about the `backlog` parameter of [listen()](https://linux.die.net/man/2/listen).
+
+**Extra Credit IV**: Implement some server-side monitoring and print some info on connecting and disconnecting clients. Using [sigaction()](http://man7.org/linux/man-pages/man2/sigaction.2.html) with [SIGCHLD](http://man7.org/linux/man-pages/man7/signal.7.html) and [waitpid()](https://linux.die.net/man/2/waitpid) will be handy. You can extract the ip address of incoming connections using the `addr` parameter of [accept()](https://linux.die.net/man/2/accept) and converting the returned `struct sockaddr` using [inet\_ntop()](https://linux.die.net/man/3/inet_ntop). The result should look like this:
+
+```
+$ ./ass26 5555
+Wating for connections ...
+Got connection from 192.168.2.42 ...
+Got connection from 192.168.2.20 ...
+Connection from 192.168.2.42 closed ...
+Got connection from 192.168.2.110 ...
+Connection from 192.168.2.20 closed ...
+Connection from 192.168.2.110 closed ...
+```
