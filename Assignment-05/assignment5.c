@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <stdio.h>
 
 int main(void)
 {
@@ -7,7 +7,7 @@ int main(void)
   float seconds;
   
   //get value for var
-  printf("Enter the amount of seconds: ");
+  printf("Enter the amount of seconds:\n");
   scanf("%f", &seconds);
 
   //initialize our arithmetic vars
@@ -24,7 +24,7 @@ int main(void)
   
   //remaining_seconds is simply what's leftover
   remaining_seconds = (seconds - (hours * 3600) - (mins * 60));
-  printf("%0.0f seconds is equal to %0.0f hours, %0.0f minutes, and %0.0f seconds.", seconds, hours, mins, remaining_seconds);
+  printf("\n%0.0f seconds is equal to %0.0f hours, %0.0f minutes, and %0.0f seconds.", seconds, hours, mins, remaining_seconds);
 
   return 0;
 }
