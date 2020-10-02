@@ -4,8 +4,8 @@
 int main(void)
 {
   //initialize vars
-  char *first;
-  char *last;
+  char *first=NULL;
+  char *last=NULL;
 
   //prompt user to input first and last name and use scanf() to store those to the initiliazed vars
   printf("Enter your first name: ");
