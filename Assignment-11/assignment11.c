@@ -9,7 +9,7 @@ int main(void)
   char answer[] = "y";
 
   //allocate store for 3 scores
-  double *scores = malloc(INITIAL_CAPACITY * sizeof(double));
+  double *scores = calloc(INITIAL_CAPACITY, sizeof(*scores));
   if(!scores)
   {
     fprintf(stderr, "Failed to allocate scores array.\n");
@@ -27,7 +27,7 @@ int main(void)
     if(numScores == capacity)
     {
       capacity *= 2;
-      scores = realloc(scores, capacity * sizeof(double));
+      scores = realloc(scores, capacity * sizeof(*scores));
       if(!scores)
       {
         fprintf(stderr, "Failed to reallocate scores array.\n");
