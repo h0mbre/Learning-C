@@ -15,7 +15,7 @@ int main (void)
 	//use the . notation to refer to the members of the 'example' instance of the 'struct_name' struct
 	example.integer = 50;
 	example.character = 'W';
-	example.floatie = 3.14;
+	example.floatie = 3.14f;
 
 	printf("This is the int: %d", example.integer);
 	printf(", this is the char: %c", example.character);
