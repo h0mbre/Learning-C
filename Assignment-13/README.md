@@ -32,5 +32,5 @@ Enter scoring total for Player #2: 15
 Enter scoring total for Player #3: 17
 Enter scoring total for Player #4: 21
 Enter scoring total for Player #5: 24
-Player #5 had the highest scoring average at 19.00 points per game.
+Player #5 had the highest scoring average at 19.75 points per game.
 ```
