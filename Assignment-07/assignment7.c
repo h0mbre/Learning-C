@@ -1,5 +1,8 @@
 #include <stdio.h>
+#include <math.h>
 
+#define EPSILON 1e-5
+#define equal(a, b) (fabs(a - b) < EPSILON)
 
 int main(void)
 {
@@ -18,7 +21,7 @@ int main(void)
   solution2 = (-b - sqrt((b*b)-(4*a*c)))/(2*a);
 
   //plug the solution back into the equation and check that it's correct: 0 = ax^2 + bx + c
-  if (((a*(solution1*solution1)) + (b*solution1) + c) == 0) 
+  if (equal(((a*(solution1*solution1)) + (b*solution1) + c), 0))
   {
   	printf("The solution using the '+' operator is: %f\n", solution1);
   }
@@ -27,7 +30,7 @@ int main(void)
   	printf("The solution using the '+' operator is: %f, but you might want to double-check that...\n", solution1);
   }
   
-  if (((a*(solution2*solution2)) + (b*solution2) + c) == 0) 
+  if (equal(((a*(solution2*solution2)) + (b*solution2) + c), 0))
   {
   	printf("[The solution using the '-' operator is: %f", solution2);
   }
