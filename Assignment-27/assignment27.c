@@ -9,7 +9,7 @@ ssize_t write(int fildes, const void *buf, size_t nbytes)
 
 	ssize_t result;
 
-	new_write = dlsym(RTLD_NEXT, "write");
+	new_write = dlsym(RTLD_NEXT, "WRITE");
 
 	if (strcmp(buf, "Hello, World!") == 0)
 	{
