@@ -49,7 +49,7 @@ int main (void)
 	return 0;
 }
 ```
-We've replaced `const char *path` with the name of our file and we've replaced `int oflags` with `O_WRONLY` and `O_CREAT` separated by the logical or operator `|` as specified on the codewiki definition for that parameter. Lastly, we've placed `S_IRWXU` as the value for the `mode_t mode` paramenter. 
+We've replaced `const char *path` with the name of our file and we've replaced `int oflags` with `O_WRONLY` and `O_CREAT` separated by the logical or operator `|` as specified on the codewiki definition for that parameter. Lastly, we've placed `S_IRWXU` as the value for the `mode_t mode` parameter. 
 
 Next, we want to include a mechanism for ensuring that the call succeeded. The man page for `open()` states that upon successful completion, the function will **return** a non-zero integer as a `file descriptor` and if it fails, it will return a `-1` value. So let's add some logic to our program that makes sure the returned value is not `-1`. 
 
