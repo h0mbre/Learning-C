@@ -19,11 +19,12 @@ int main (void)
 		
 	}
 
+	char buf[] = "Writing test data to the file";
 	int writertn;
+	
+	writertn = write(filedescriptor, buf, sizeof(buf)/sizeof(char));
 
-	writertn = write(filedescriptor, "Writing test data to the file", 30);
-
-	if (writertn != 30)
+	if (writertn != sizeof(buf)/sizeof(char))
 	{
 		printf("The write operation failed...");
 		return -1;
